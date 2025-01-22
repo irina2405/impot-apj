@@ -1,0 +1,72 @@
+CREATE TABLE tables(
+   id VARCHAR2(255) ,
+   nom VARCHAR2(50)  NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE maison(
+   id VARCHAR2(255) ,
+   nom VARCHAR2(100)  NOT NULL,
+   longueur NUMBER(15,2)   NOT NULL,
+   largeur NUMBER(15,2)   NOT NULL,
+   nb_etage NUMBER(10) NOT NULL,
+   latitude NUMBER(9,6)   NOT NULL,
+   longitude NUMBER(9,6)   NOT NULL,
+   impot_base NUMBER(15,2)  ,
+   impot_reel NUMBER(15,2)  ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE type_caracteristique(
+   id VARCHAR2(255) ,
+   nom VARCHAR2(50)  NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE caractéristique(
+   id VARCHAR2(255) ,
+   nom VARCHAR2(50)  NOT NULL,
+   coeff NUMBER(15,2)   NOT NULL,
+   id_1 VARCHAR2(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_1) REFERENCES type_caracteristique(id)
+);
+
+CREATE TABLE paiement(
+   id VARCHAR2(255) ,
+   date_paiement DATE NOT NULL,
+   id_1 VARCHAR2(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_1) REFERENCES maison(id)
+);
+
+CREATE TABLE constante(
+   id VARCHAR2(255) ,
+   cle CLOB NOT NULL,
+   valeur CLOB NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE arrondissement(
+   id VARCHAR2(255) ,
+   nom VARCHAR2(50)  NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE point_arrondissement(
+   id VARCHAR2(255) ,
+   latitude NUMBER(9,6)   NOT NULL,
+   longitude NUMBER(9,6)   NOT NULL,
+   id_1 VARCHAR2(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_1) REFERENCES arrondissement(id)
+);
+
+CREATE TABLE caracteristique_maison(
+   id_1 VARCHAR2(255) ,
+   id_2 VARCHAR2(255) ,
+   id VARCHAR2(255)  NOT NULL,
+   PRIMARY KEY(id_1, id_2),
+   FOREIGN KEY(id_1) REFERENCES maison(id),
+   FOREIGN KEY(id_2) REFERENCES caractéristique(id)
+);
