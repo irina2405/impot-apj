@@ -38,3 +38,5 @@ INSERT INTO caracteristique (id, nom, coeff, id_type_caracteristique) VALUES ('C
 INSERT INTO caracteristique_maison (id, id_maison, id_caracteristique) VALUES ('CM00001', 'MAIS00001', 'CAR00001');
 INSERT INTO caracteristique_maison (id, id_maison, id_caracteristique) VALUES ('CM00002', 'MAIS00001', 'CAR00003');
 INSERT INTO caracteristique_maison (id, id_maison, id_caracteristique) VALUES ('CM00003', 'MAIS00001', 'CAR00005');
+
+COMMIT;
